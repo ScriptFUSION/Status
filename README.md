@@ -6,14 +6,14 @@ ScriptFUSION
 
 | Project          | Stars |Version | Monthly downloads | Build | Coverage | Style |
 |------------------|-------|--------|-------------------|-------|----------|-------|
-|💄 [Porter][Porter]|![][Pstr]|![][Pver]|![][Pmdl]|![][Pbld]|![][Pcov]|![][Psty]|
-|🌍 [Mapper][Mapper]|![][Mstr]|![][Mver]|![][Mmdl]|![][Mbld]|![][Mcov]|![][Msty]|
-|📠 [PIEP][PIEP]|![][Istr]|![][Iver]|![][Imdl]|![][Ibld]|![][Icov]|![][Isty]|
-|✏ [ByteFormatter][BF]|![][Bstr]|![][Bver]|![][Bmdl]|![][Bbld]|![][Bcov]|![][Bsty]|
-|🏃 [ArrayWalker][AW]|![][Astr]|![][Aver]|![][Amdl]|![][Abld]|![][Acov]|-|
-|🔃 [Retry][Retry]|![][Rstr]|![][Rver]|![][Rmdl]|![][Rbld]|![][Rcov]|![][Rsty]|
-|🔃❗ [Retry EH][REH]|![][R2str]|![][R2ver]|![][R2mdl]|![][R2bld]|![][R2cov]|![][R2sty]|
-|📍 [StaticClass][SC]|![][SCstr]|![][SCver]|![][SCmdl]|-|-|-|
+|💄 [Porter][Porter]|![][Pstr]|![][Pver]|![][Pmdl]|![][Pbld]|![][Pcov]|![][Psty]|
+|🌍 [Mapper][Mapper]|![][Mstr]|![][Mver]|![][Mmdl]|![][Mbld]|![][Mcov]|![][Msty]|
+|📠 [PIEP][PIEP]|![][Istr]|![][Iver]|![][Imdl]|![][Ibld]|![][Icov]|![][Isty]|
+|✏ [ByteFormatter][BF]|![][Bstr]|![][Bver]|![][Bmdl]|![][Bbld]|![][Bcov]|![][Bsty]|
+|🏃 [ArrayWalker][AW]|![][Astr]|![][Aver]|![][Amdl]|![][Abld]|![][Acov]|-|
+|🔃 [Retry][Retry]|![][Rstr]|![][Rver]|![][Rmdl]|![][Rbld]|![][Rcov]|![][Rsty]|
+|🔃❗ [Retry EH][REH]|![][R2str]|![][R2ver]|![][R2mdl]|![][R2bld]|![][R2cov]|![][R2sty]|
+|📍 [StaticClass][SC]|![][SCstr]|![][SCver]|![][SCmdl]|-|-|-|
 
 
   [Porter]: https://github.com/ScriptFUSION/Porter
