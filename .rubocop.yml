@@ -1,0 +1,12 @@
+AllCops:
+  TargetRubyVersion: 2.3
+
+Style/EndOfLine:
+  EnforcedStyle: lf
+
+Style/NumericLiterals:
+  Enabled: false
+
+# Can't add block parameter type annotations with this rule.
+Layout/MultilineBlockLayout:
+  Enabled: false

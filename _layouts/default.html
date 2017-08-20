@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include head.html %}
+
+  <body>
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a id="forkme_banner" href="{{ site.repository_url }}"
+          >Fork on GitHub</a>
+
+        <h1 id="project_title"><a href="http://scriptfusion.com" title="Home"
+          >{{ site.title }}</a></h1>
+        <h2 id="project_tagline">{{ site.tagline }}</h2>
+      </header>
+    </div>
+
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        {{ content }}
+      </section>
+    </div>
+
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Generated on {{ site.time | date_to_rfc822 }}</p>
+      </footer>
+    </div>
+  </body>
+</html>

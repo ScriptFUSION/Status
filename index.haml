@@ -1,0 +1,50 @@
+---
+layout: page
+---
+{% for set in page.github %}
+{% assign org = set[0]['owner'] %}
+%h2 {{ org['login'] }}
+%table
+  %thead
+    %tr
+      %th Project
+      %th Stars
+      %th Version
+      %th Monthly downloads
+      %th Build
+      %th Coverage
+      %th Style
+      %th BDFL
+{% for repo in set %}
+  %tbody
+    %tr
+      %td
+        {{ repo.emoji }}
+        %a(href='{{ repo.html_url }}') {{ repo.name | replace: '-', ' ' }}
+      %td
+        %a(href='{{ repo.html_url }}/stargazers')
+          %img(src='https://img.shields.io/github/stars/{{ repo.full_name }}.svg?style=social&label=★')
+      %td
+        %a(href='{{ repo.html_url }}/releases')
+          %img(src='https://poser.pugx.org/{{ repo.composer.name }}/version')
+      %td
+        %a(href='https://packagist.org/packages/{{ repo.composer.name }}/stats')
+          %img(src='https://poser.pugx.org/{{ repo.composer.name }}/d/monthly')
+      %td
+        %a(href='{{ repo.readme['Build'].url }}')
+          %img(src='{{ repo.readme['Build image'].url }}'
+            title='{{ repo.readme['Build image'].title }}')
+      %td
+        %a(href='{{ repo.readme['Coverage'].url }}')
+          %img(src='{{ repo.readme['Coverage image'].url }}'
+            title='{{ repo.readme['Coverage image'].title }}')
+      %td
+        %a(href='https://styleci.io/repos/{{ repo.id }}')
+          %img(src='https://styleci.io/repos/{{ repo.id }}/shield?style=flat'
+            title='Code style')
+      %td
+        %a(href='{{ repo.top_contributor.html_url }}')
+          %img(src='{{ repo.top_contributor.avatar_url }}' width=32
+            title='{{ repo.top_contributor.login }}')
+{% endfor %}
+{% endfor %}
