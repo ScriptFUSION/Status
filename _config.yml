@@ -1,6 +1,4 @@
 title: ScriptFUSION PHP project status
-baseurl: /Status # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
 repository_url: https://github.com/ScriptFUSION/Status
 
 exclude:
