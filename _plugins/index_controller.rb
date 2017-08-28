@@ -29,38 +29,63 @@ module IndexController
     @client.organizations('bilge').map do |organization|
       puts "\nOrganization: #{organization.login}"
 
-      organization
-        .rels[:repos].get.data
-        .select { |repository| repository.language == 'PHP' }
-        .sort! do |a, b|
-          (b.stargazers_count <=> a.stargazers_count).nonzero? ||
-            b.pushed_at <=> a.pushed_at
-        end.map! do |repository|
-          puts "|- Repository: #{repository.name} "\
-            "★#{repository.stargazers_count}"
-
-          if repository.pushed_at < Time.now - 47335389 # 1.5 years
-            puts "   ✗ Unmaintained. Last pushed on #{repository.pushed_at}."
-            next
-          end
-
-          next if (readme = download_readme_references repository).nil?
-          next if (composer = download_composer_json repository).nil?
-
-          resource2hash(repository).merge!\
-            'composer' => composer,
-            'readme' => readme,
-            'emoji' => parse_emojis(repository.description),
-            'top_contributor' =>
-              resource2hash(repository.rels[:contributors].get.data.first)
-        end.reject(&:nil?)
+      download_repositories organization
     end.reject(&:empty?)
+  end
+
+  def download_repositories(organization)
+    organization
+      .rels[:repos].get.data
+      .sort!(&method(:sort_repositories))
+      .map!(&method(:decorate_repository))
+      .reject(&:nil?)
+  end
+
+  def announce_repo(repository)
+    return if @last_repo == repository
+
+    puts "|- Repository: #{repository.name} ★#{repository.stargazers_count}"
+    @last_repo = repository
+  end
+
+  def print_repo_error(repository, message)
+    announce_repo repository
+
+    puts '   ✗ ' + message
+  end
+
+  def sort_repositories(a, b)
+    (b.stargazers_count <=> a.stargazers_count).nonzero? ||
+      b.pushed_at <=> a.pushed_at
+  end
+
+  def filter_repository(repository)
+    return false unless repository.language == 'PHP'
+    return true unless repository.pushed_at < Time.now - 47335389 # 1.5 years
+
+    print_repo_error\
+      repository,
+      "Unmaintained. Last pushed on #{repository.pushed_at}."
+  end
+
+  def decorate_repository(repository)
+    return unless filter_repository repository
+    return if (readme = download_readme_references repository).nil?
+    return if (composer = download_composer_json repository).nil?
+
+    announce_repo repository
+
+    resource2hash(repository).merge!\
+      'composer' => composer,
+      'readme' => readme,
+      'top_contributor' => download_top_contributor(repository),
+      'emoji' => parse_emojis(repository.description)
   end
 
   def download_composer_json(repository)
     JSON.parse download_file(repository, file = 'composer.json')
   rescue Octokit::NotFound
-    puts %(   ✗ "#{file}" not found.)
+    print_repo_error repository, %("#{file}" not found.)
   end
 
   def download_readme_references(repository)
@@ -73,7 +98,11 @@ module IndexController
       }
     end
   rescue Octokit::NotFound
-    puts '   ✗ Readme not found.'
+    print_repo_error repository, 'Readme not found.'
+  end
+
+  def download_top_contributor(repository)
+    resource2hash repository.rels[:contributors].get.data.first
   end
 
   # @param [String] markdown
