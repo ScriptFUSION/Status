@@ -22,7 +22,10 @@
 
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p>Generated on {{ site.time | date_to_rfc822 }}</p>
+        <p>
+          Generated on
+          <a href="{{ site.build_url }}">{{ site.time | date_to_rfc822 }}</a>
+        </p>
       </footer>
     </div>
   </body>

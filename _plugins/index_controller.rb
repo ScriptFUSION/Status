@@ -61,11 +61,9 @@ module IndexController
 
   def filter_repository(repository)
     return false unless repository.language == 'PHP'
-    return true unless repository.pushed_at < Time.now - 47335389 # 1.5 years
 
-    print_repo_error\
-      repository,
-      "Unmaintained. Last pushed on #{repository.pushed_at}."
+    return true unless repository.description =~ /(\[(?:OLD|DEPRECATED)\])/
+    print_repo_error repository, "Tagged as: #{Regexp.last_match(1)}."
   end
 
   def decorate_repository(repository)
