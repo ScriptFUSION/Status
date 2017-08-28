@@ -30,14 +30,22 @@ layout: page
       %td
         %a(href='https://packagist.org/packages/{{ repo.composer.name }}/stats')
           %img(src='https://poser.pugx.org/{{ repo.composer.name }}/d/monthly')
-      %td
+      %td<
+        {% if repo.readme['Build'] %}
         %a(href='{{ repo.readme['Build'].url }}')
           %img(src='{{ repo.readme['Build image'].url }}'
             title='{{ repo.readme['Build image'].title }}')
-      %td
+        {% else %}
+        &mdash;
+        {% endif %}
+      %td<
+        {% if repo.readme['Coverage'] %}
         %a(href='{{ repo.readme['Coverage'].url }}')
           %img(src='{{ repo.readme['Coverage image'].url }}'
             title='{{ repo.readme['Coverage image'].title }}')
+        {% else %}
+        &mdash;
+        {% endif %}
       %td
         %a(href='https://styleci.io/repos/{{ repo.id }}')
           %img(src='https://styleci.io/repos/{{ repo.id }}/shield?style=flat'
