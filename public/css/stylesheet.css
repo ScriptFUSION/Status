@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
   margin: 10px 0;
   font-weight: 700;
-  color:#222222;
+  color: #222;
 }
 
 h1 {
@@ -78,18 +78,22 @@ footer p {
   color: #f2f2f2;
 }
 
-a {
+a, h2 > a {
   display: inline-block;
   text-decoration: none;
   color: inherit;
 }
 
-#main_content a {
+.page a {
   color: #0366d6;
 }
 
 a:hover, a:focus {
   text-decoration: underline;
+}
+
+img {
+  vertical-align: bottom;
 }
 
 em {
@@ -188,10 +192,6 @@ td {
 
 td:nth-child(n+3) {
   text-align: center;
-}
-
-td > img {
-  vertical-align: sub;
 }
 
 form {
