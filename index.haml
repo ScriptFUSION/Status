@@ -3,7 +3,10 @@ layout: page
 ---
 {% for set in page.github %}
 {% assign org = set[0]['owner'] %}
-%h2 {{ org['login'] }}
+%h2
+  %img(src='{{ org.avatar_url }}&s=38')
+  %a(href='{{ org.html_url }}')
+    {{ org.login | replace: '-', ' ' }}
 %table
   %thead
     %tr
@@ -52,7 +55,7 @@ layout: page
             title='Code style')
       %td
         %a(href='{{ repo.top_contributor.html_url }}')
-          %img(src='{{ repo.top_contributor.avatar_url }}' width=32
+          %img(src='{{ repo.top_contributor.avatar_url }}&s=32'
             title='{{ repo.top_contributor.login }}')
 {% endfor %}
 {% endfor %}
