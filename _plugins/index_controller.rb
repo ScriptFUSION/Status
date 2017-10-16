@@ -76,6 +76,7 @@ module IndexController
     resource2hash(repository).merge!\
       'composer' => composer,
       'readme' => readme,
+      'views' => download_unique_views(repository),
       'top_contributor' => download_top_contributor(repository),
       'emoji' => parse_emojis(repository.description)
   end
@@ -97,6 +98,13 @@ module IndexController
     end
   rescue Octokit::NotFound
     print_repo_error repository, 'Readme not found.'
+  end
+
+  def download_unique_views(repository)
+    @client.views(
+      repository.full_name,
+      accept: Octokit::Preview::PREVIEW_TYPES[:traffic]
+    )[:uniques]
   end
 
   def download_top_contributor(repository)

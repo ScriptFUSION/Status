@@ -14,10 +14,13 @@ layout: page
       %th Stars
       %th Version
       %th Monthly downloads
+      %th
+        %abbr(title='Unique views past 14 days') Views
       %th Build
       %th Coverage
       %th Style
-      %th BDFL
+      %th
+        %abbr(title='Main contributor') BDFL
 {% for repo in set %}
   %tbody
     %tr
@@ -33,6 +36,8 @@ layout: page
       %td
         %a(href='https://packagist.org/packages/{{ repo.composer.name }}/stats')
           %img(src='https://poser.pugx.org/{{ repo.composer.name }}/d/monthly')
+      %td
+        {{ repo.views }}
       %td<
         {% if repo.readme['Build'] %}
         %a(href='{{ repo.readme['Build'].url }}')
