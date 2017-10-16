@@ -8,8 +8,9 @@
         <a id="forkme_banner" href="{{ site.repository_url }}"
           >Fork on GitHub</a>
 
-        <h1 id="project_title"><a href="http://scriptfusion.com" title="Home"
-          >{{ site.title }}</a></h1>
+        <h1 id="project_title">
+          <a href="/" title="Home">{{ site.title }}</a>
+        </h1>
         <h2 id="project_tagline">{{ site.tagline }}</h2>
       </header>
     </div>
@@ -22,6 +23,9 @@
 
     <div id="footer_wrap" class="outer">
       <footer class="inner">
+        <a href="https://travis-ci.org/ScriptFUSION/Status" style="float: right">
+          <img src="https://travis-ci.org/ScriptFUSION/Status.svg?branch=master">
+        </a>
         <p>
           Generated on
           <a href="{{ site.build_url }}">{{ site.time | date_to_rfc822 }}</a>
