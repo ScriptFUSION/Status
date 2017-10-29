@@ -8,10 +8,10 @@ Updated once a day by [Travis][Build].
 
 Each project must meet the following requirements to be included.
 
-* Built in PHP.
+* Repository language is PHP.
 * Readme present.
 * `composer.json` file present.
-* Last commit pushed within the last 1.5 years.
+* Repository description does not contain *[OLD]* or *[DEPRECATED]*.
 
 Acknowledgements
 ----------------
