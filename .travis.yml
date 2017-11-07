@@ -1,28 +1,16 @@
 notifications:
   email: false
 
-env:
-  global:
-    - secure: "\
-    mXVwwu7ddcqmf6RSG2ILA7ppZwEyvh0lxTOb5Byvzx1KQ6Vr/vLqvNIRQN6mhTVTOj0aQMFhS/KthlJfnLTMv++ddYgqIWbL1YPqzSCYphqMk+HNRN\
-    1lFMdrEXiE28mtVEjZi/WQ+4mt8Y3sfCAOTfn/OlHzJdTO6KYXJwG0H3L76Ot4l2jbTvV1+t0fOuIpkyj68Nz/J/Ff7SEX48DRd3i1SQdrZBPwjUz0\
-    9MzRwhv7eh9HkamSiqhBr0yOgtR331TI0wZzWXyR9Bo96TCnqZk6DJSzXgw2c2OM9gSpWEabV6q34dMZSkt/87Ty2hu4PKI32sJcTcup63GXdMSYZo\
-    nGXfGgPXI0emZBfuVAw1VfIFr9P1nDO1KG15CRxTMdOcRwRc4lX9xuDtvZM7Pv/9z2HMUnBS8llJ1cKRoCUJ5eA8LDpYfTUUsiZrn+hVcODcbdWckA\
-    MGLK3l5USMYUgPVSn4+Rqm5k6/lLcHQk2LHV3Qt4dx3+mu2uZLLcknbP1yESine3fauIqWYQqpjgycdiDTq2K9q1vDRJRSw0lo4+81yJX1XkLiep6t\
-    L3Har/21Q5FiWVfj32TMM4fUqorOfkv7H+PybKjd3eR9d5SwfWbDBcn6cSiLCmzDHhuaLx0faKR/LObFLHkKr7MHsRFGEiLvlP84hLXc7ZPgbY3tM="
-
 before_script:
   - mkdir -v "${out=_site}" && cd "$_"
-  - |
-    git init
-    git config user.name Travis
-    git config user.email bilge+travis@scriptfusion.com
-    git config credential.helper store
-    git remote add origin https://github.com/"$TRAVIS_REPO_SLUG"
-    echo "https://$GITHUB_TOKEN:@github.com" > ~/.git-credentials
+  - echo "https://$GITHUB_TOKEN:@github.com" > ~/.git-credentials
+  - git clone -n https://github.com/"$TRAVIS_REPO_SLUG" .
+      -c user.name=Travis
+      -c user.email=bilge+travis@scriptfusion.com
+      -c credential.helper=store
 
   - # Checkout remote branch or create new branch if remote branch doesn't exist yet.
-    git pull --depth=1 origin "${branch=gh-pages}"
+    git checkout "${branch=gh-pages}"
       || git checkout --orphan "$branch"
 
   - rm -rfv *
