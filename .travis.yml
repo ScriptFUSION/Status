@@ -16,7 +16,7 @@ before_script:
   - rm -rfv *
 
 script:
-  - cd - && bundler exec jekyll b
+  - cd - && bundle exec jekyll b
 
 after_success:
   - cd "$out" &&
