@@ -60,9 +60,8 @@ module IndexController
   end
 
   def filter_repository(repository)
-    return false unless repository.language == 'PHP'
-
     return true unless repository.description =~ /(\[(?:OLD|DEPRECATED)\])/
+
     print_repo_error repository, "Tagged as: #{Regexp.last_match(1)}."
   end
 
