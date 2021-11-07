@@ -18,5 +18,5 @@ Acknowledgements
 
  * Site theme &ndash; [jasoncostello/slate](https://github.com/jasoncostello/slate).
 
-  [Build]: http://travis-ci.org/ScriptFUSION/Status
-  [Build image]: https://travis-ci.org/ScriptFUSION/Status.svg?branch=master "Build status"
+  [Build]: https://github.com/ScriptFUSION/Status/actions/workflows/CD.yml
+  [Build image]: https://github.com/ScriptFUSION/Status/workflows/CD/badge.svg "Build status"

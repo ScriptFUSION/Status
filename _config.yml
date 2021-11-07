@@ -1,6 +1,7 @@
 title: ScriptFUSION PHP project status
 repository_url: https://github.com/ScriptFUSION/Status
-build_url: http://travis-ci.org/ScriptFUSION/Status
+build_url: https://github.com/ScriptFUSION/Status/actions/workflows/CD.yml
+badge_url: https://github.com/ScriptFUSION/Status/workflows/CD/badge.svg
 
 exclude:
   - Gemfile
