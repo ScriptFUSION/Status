@@ -1,0 +1,44 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: 0 5 * * *
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: _site
+
+      - name: Install dependencies
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.5
+          bundler-cache: true
+
+      - name: Wipe output directory
+        run: rm -rfv _site/*
+
+      - name: Build site
+        run: bundle exec jekyll b
+        env:
+          GITHUB_TOKEN: ${{ secrets.TRAVIS_GITHUB_TOKEN }}
+
+      - name: Push site
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A . &&
+          git commit -m "Built from $GITHUB_SHA." &&
+          [[ -r CNAME && -r index.html ]] && git push
+        working-directory: _site

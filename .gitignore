@@ -1,3 +1,4 @@
 /.*/
+!/.github/
 /Gemfile.lock
 /_site/
