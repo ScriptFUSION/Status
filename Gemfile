@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'gemoji'
-gem 'jekyll', '~> 3.5', '>= 3.5.2'
+gem 'jekyll', '~> 3.6'
 gem 'octokit', '~> 4.7'
 
 # If you have any plugins, put them here!
